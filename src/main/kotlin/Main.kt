@@ -1,3 +1,4 @@
+import java.io.OutputStream
 import java.net.ServerSocket
 
 fun main(args: Array<String>) {
@@ -11,6 +12,10 @@ fun main(args: Array<String>) {
     // ensures that we don't run into 'Address already in use' errors
     serverSocket.reuseAddress = true
 
-    serverSocket.accept() // Wait for connection from client.
-    println("accepted new connection")
+    val client = serverSocket.accept() // Wait for connection from client.
+    val outputStream: OutputStream = client.getOutputStream()
+
+    val data = "+PONG\\r\\n".toByteArray()
+
+    outputStream.write(data)
 }
