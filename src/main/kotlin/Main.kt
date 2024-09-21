@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     val client = serverSocket.accept() // Wait for connection from client.
     val outputStream: OutputStream = client.getOutputStream()
 
-    val data = "+PONG\\r\\n".toByteArray()
+    val data = "+PONG\r\n".toByteArray()
 
     outputStream.write(data)
 }
